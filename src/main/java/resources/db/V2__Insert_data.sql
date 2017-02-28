@@ -1,13 +1,13 @@
 --Insert ROLE
-INSERT INTO role values (null,"administrateur");
-INSERT INTO role values (null,"paricipant");
+INSERT INTO ROLE values ("administrateur");
+INSERT INTO ROLE values ("paricipant");
 
 --Insert SALARIE
-INSERT INTO salarie values(null,"badouch","mohamed","badouch","mohamed",2);
-INSERT INTO salarie values(null,"saoud","amine","saoud","amine",2);
-INSERT INTO salarie values(null,"el merrouni","merouane","merrouni","marouane",2);
+INSERT INTO SALARIE values("badouch","mohamed","badouch","mohamed",2);
+INSERT INTO SALARIE values("saoud","amine","saoud","amine",2);
+INSERT INTO SALARIE values("el merrouni","merouane","merrouni","marouane",2);
 
-INSERT INTO salarie values(null,"administrateur","administrateur","admin","admin",1);
+INSERT INTO SALARIE values("administrateur","administrateur","admin","admin",1);
 
 
 
