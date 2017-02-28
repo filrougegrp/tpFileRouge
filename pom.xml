@@ -58,7 +58,7 @@
                         <location>
                         	<!-- for Linux  filesystem:\src\main\java\resources\db -->
                         	<!-- for windows  filesystem:/src/main/java/resources/db -->
-                            filesystem:/src/main/java/resources/db
+                            filesystem:\src\main\java\resources\db
                         </location>
                     </locations>
                     <initOnMigrate>true</initOnMigrate>

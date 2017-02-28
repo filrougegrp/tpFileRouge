@@ -1,13 +1,14 @@
 --Insert ROLE
-INSERT INTO ROLE values ("administrateur");
-INSERT INTO ROLE values ("paricipant");
+INSERT INTO `ROLE` (`NOM`) VALUES ( 'ROLE_ADMIN');
+INSERT INTO `ROLE` ( `NOM`) VALUES ( 'ROLE_USER');
 
 --Insert SALARIE
-INSERT INTO SALARIE values("badouch","mohamed","badouch","mohamed",2);
-INSERT INTO SALARIE values("saoud","amine","saoud","amine",2);
-INSERT INTO SALARIE values("el merrouni","merouane","merrouni","marouane",2);
+INSERT INTO `SALARIE` ( `NOM`, `PRENOM`, `USERNAME`, `PASSWORD`, `ID_ROLE`) VALUES ('Badouch', 'mohamed', 'badouch', 'password', '2');
+INSERT INTO `SALARIE` ( `NOM`, `PRENOM`, `USERNAME`, `PASSWORD`, `ID_ROLE`) VALUES ('el merrouni', 'marouane', 'marouane', 'password', '2');
+INSERT INTO `SALARIE` ( `NOM`, `PRENOM`, `USERNAME`, `PASSWORD`, `ID_ROLE`) VALUES ('saoud', 'amine', 'saoud', 'password', '2');
 
-INSERT INTO SALARIE values("administrateur","administrateur","admin","admin",1);
+INSERT INTO `SALARIE` ( `NOM`, `PRENOM`, `USERNAME`, `PASSWORD`, `ID_ROLE`) VALUES ('akouz', 'mohamed', 'admin', 'admin', '1');
+
 
 
 
