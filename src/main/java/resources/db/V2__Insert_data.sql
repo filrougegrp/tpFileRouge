@@ -33,7 +33,7 @@ insert into PAYS (NOM,LOGO)
 insert into PAYS (NOM,LOGO)
 				values('RD Congo','');
 insert into PAYS (NOM,LOGO)
-				values("Cote d'Ivoire",'');
+				values('Cote d\'Ivoire','');
 insert into PAYS (NOM,LOGO)
 				values('Ghana','');
 insert into PAYS (NOM,LOGO)
