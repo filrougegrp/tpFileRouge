@@ -14,10 +14,19 @@ SELECT pa.NOM,po.NOM from PAYS pa
 	INNER JOIN POULE po on po.ID_POULE = pp.ID_POULE 
 	where po.NOM = 'A' 
 	
-/*nombre d'equipe d'une tournoi*/
-SELECT pa.COUNT(*) FROM PAYS pa
+/*lister les equipes d'une tournoi*/
+SELECT pa.NOM FROM PAYS pa
 	INNER JOIN POULE_PAYS pp on pp.ID_PAYS = pa.ID_PAYS 
-    INNER JOIN POULE po on po.ID_POULE = pp.ID_POULE;
+    INNER JOIN POULE po on po.ID_POULE = pp.ID_POULE AND po.GROUPE = 1
+	INNER JOIN COMPETITION co on co.ID_COMPETITION = po.ID_COMPETITION
+    where po.GROUPE = 1;
+    
+/*nbr des equipes d'un tournoi*/
+SELECT count(1) FROM PAYS pa
+	INNER JOIN POULE_PAYS pp on pp.ID_PAYS = pa.ID_PAYS 
+    INNER JOIN POULE po on po.ID_POULE = pp.ID_POULE AND po.GROUPE = 1
+	INNER JOIN COMPETITION co on co.ID_COMPETITION = po.ID_COMPETITION
+    where po.GROUPE = 1;
 
 -- AMINE
 
