@@ -15,7 +15,7 @@
     <database.name>pronosticDB</database.name>
   	<databese.driver>com.mysql.jdbc.Driver</databese.driver>
   	<!--   	<database.url>jdbc:mysql://localhost:3305</database.url>  -->
-  	<database.url>jdbc:mysql://localhost</database.url>
+  	<database.url>jdbc:mysql://localhost:3305</database.url>
   </properties>
 
    <dependencies>
@@ -58,7 +58,9 @@
                         <location>
                         	<!-- for Linux  filesystem:\src\main\java\resources\db -->
                         	<!-- for windows  filesystem:/src/main/java/resources/db -->
+
                              filesystem:\src\main\java\resources\db
+
                         </location>
                     </locations>
                     <initOnMigrate>true</initOnMigrate>
