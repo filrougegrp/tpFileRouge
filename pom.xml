@@ -16,10 +16,18 @@
 		<databese.driver>com.mysql.jdbc.Driver</databese.driver>
 		<!-- <database.url>jdbc:mysql://192.168.56.10</database.url> -->
 		<!-- <database.url>jdbc:mysql://localhost:3305</database.url> -->
-		<database.url>jdbc:mysql://localhost</database.url>
+		<database.url>jdbc:mysql://localhost:3305</database.url>
+
+		<lombok.version>1.16.2</lombok.version>
 	</properties>
 
 	<dependencies>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+		</dependency>
 
 		<dependency>
 			<groupId>com.jolbox</groupId>
@@ -65,16 +73,16 @@
 					<driver>${database.driver}</driver>
 					<url>${database.url}</url>
 					<user>root</user>
-					<password>Marsql1$@</password>
+					<password>root</password>
 					<schemas>
 						<schema>${database.name}</schema>
 					</schemas>
 					<locations>
 						<location>
-							<!-- for Linux filesystem:\src\main\java\resources\db -->
-							<!-- for windows filesystem:/src/main/java/resources/db -->
+							<!-- for Linux filesystem:\src\main\resources\db -->
+							<!-- for windows filesystem:/src/main/resources/db -->
 
-							filesystem:\src\main\java\resources\db
+							filesystem:/src/main/resources/db
 
 						</location>
 					</locations>

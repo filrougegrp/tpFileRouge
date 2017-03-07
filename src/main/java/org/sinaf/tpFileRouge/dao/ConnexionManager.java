@@ -10,7 +10,7 @@ import com.jolbox.bonecp.BoneCPConfig;
 
 public class ConnexionManager {
 
-	private static ConnexionManager datasource;
+	private static ConnexionManager connexionManager;
 	private BoneCP connectionPool;
 
 	private ConnexionManager() throws IOException, SQLException, PropertyVetoException {
@@ -27,7 +27,7 @@ public class ConnexionManager {
 			BoneCPConfig config = new BoneCPConfig();
 			// jdbc url specific to your database, eg
 			// jdbc:mysql://127.0.0.1/yourdb
-			config.setJdbcUrl("jdbc:mysql://localhost:3305/pronosticdb");
+			config.setJdbcUrl("jdbc:mysql://localhost:3305/pronosticDB");
 			config.setUsername("root");
 			config.setPassword("root");
 			config.setMinConnectionsPerPartition(5);
@@ -43,11 +43,11 @@ public class ConnexionManager {
 	}
 
 	public static ConnexionManager getInstance() throws IOException, SQLException, PropertyVetoException {
-		if (datasource == null) {
-			datasource = new ConnexionManager();
-			return datasource;
+		if (connexionManager == null) {
+			connexionManager = new ConnexionManager();
+			return connexionManager;
 		} else {
-			return datasource;
+			return connexionManager;
 		}
 	}
 
