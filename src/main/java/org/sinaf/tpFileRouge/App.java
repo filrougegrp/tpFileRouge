@@ -1,27 +1,59 @@
 package org.sinaf.tpFileRouge;
 
-import java.util.Random;
+import java.beans.PropertyVetoException;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
-/**
- * Hello world!
- *
- */
+import org.sinaf.tpFileRouge.dao.ConnexionManager;
+
 public class App {
-	public static void main(String[] args) {
 
-		Random rn = new Random();
+	public static void main(String[] args)
+			throws PropertyVetoException, SQLException, IOException, ClassNotFoundException {
+		Connection connection = null;
+		Statement statement = null;
+		ResultSet resultSet = null;
+		try {
+			// fetch a connection
+			connection = ConnexionManager.getInstance().getConnection();
 
-		// for (int i = 1; i <= 24; i++) {
-		// System.out.println("INSERT INTO `PRONOSTIC` (`BUT_1`, `BUT_2`,
-		// `NOTE`, `ID_MATCH`, `ID_SALARIE`) VALUES ('"
-		// + rn.nextInt(6 - 0 + 1) + "', '" + rn.nextInt(6 - 0 + 1) + "', '0',
-		// '" + i + "', '1');");
-		// }
+			if (connection != null) {
+				statement = connection.createStatement();
+				resultSet = statement.executeQuery("select * from pays");
+				while (resultSet.next()) {
+					System.out.println("paysid: " + resultSet.getString("ID_PAYS"));
+					System.out.println("paysname: " + resultSet.getString("NOM"));
+				}
+			}
 
-		for (int i = 2; i <= 24; i++) {
-			System.out.println("UPDATE RENCONTRE SET BUT_1=" + rn.nextInt(6 - 0 + 1) + ",BUT_2=" + rn.nextInt(6 - 0 + 1)
-					+ " WHERE ID_RENCONTRE = " + i + ";");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (resultSet != null) {
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-
 	}
+
 }
