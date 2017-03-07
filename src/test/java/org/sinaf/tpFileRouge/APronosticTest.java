@@ -5,15 +5,19 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.junit.AfterClass;
+import org.junit.Before;
 import org.junit.BeforeClass;
+import org.sinaf.tpFileRouge.dao.PaysDAO;
+import org.sinaf.tpFileRouge.dao.impl.PaysDAOImpl;
 
 public abstract class APronosticTest {
 
-	protected static Connection connection;
 	private static final String PATH = "/home/mar1/workspace/tpFileRouge/src/test/resources";
-
 	private static final String URL = "jdbc:h2:mem:testTpFileRouge;INIT=runscript from '" + PATH
 			+ "/Create_Tables.sql'\\;runscript from '" + PATH + "/Insert_data.sql'";
+
+	protected static Connection connection;
+	protected PaysDAO paysDao;
 
 	@BeforeClass
 	public static void init()
@@ -21,6 +25,11 @@ public abstract class APronosticTest {
 		Class.forName("org.h2.Driver");
 		connection = DriverManager.getConnection(URL, "root", "");
 
+	}
+
+	@Before
+	public void setUp() {
+		this.paysDao = new PaysDAOImpl(connection);
 	}
 
 	@AfterClass

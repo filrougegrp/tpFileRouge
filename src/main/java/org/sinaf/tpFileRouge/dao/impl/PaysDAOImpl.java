@@ -14,13 +14,16 @@ import org.sinaf.tpFileRouge.model.Pays;
 
 public class PaysDAOImpl implements PaysDAO {
 
+	private final String SELECT_QUERY = "SELECT * FROM PAYS WHERE ID_PAYS = ?";
+	private final String UPDATE_QUERY = "UPDATE PAYS SET NOM = ?, LOGO = ? WHERE ID_PAYS= ?";
+
 	private Connection con;
 
 	public PaysDAOImpl() throws TechniqueException {
 		try {
 			this.con = ConnexionManager.getInstance().getConnection();
 		} catch (SQLException | IOException | PropertyVetoException e) {
-			throw new TechniqueException("hahah", e);
+			e.printStackTrace();
 		}
 	}
 
@@ -35,7 +38,19 @@ public class PaysDAOImpl implements PaysDAO {
 
 	@Override
 	public void update(Pays model) throws TechniqueException {
-		// TODO Auto-generated method stub
+		PreparedStatement preparedStatement;
+		if (this.con != null) {
+			try {
+				preparedStatement = this.con.prepareStatement(this.UPDATE_QUERY);
+				preparedStatement.setString(1, model.getNom());
+				preparedStatement.setString(2, model.getLogo());
+				preparedStatement.setLong(3, model.getId());
+				preparedStatement.executeUpdate();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override
@@ -45,20 +60,18 @@ public class PaysDAOImpl implements PaysDAO {
 		ResultSet rs;
 		Pays p = null;
 
-		try {
-			if (this.con != null) {
-
-				String sql = "SELECT * FROM PAYS WHERE ID_PAYS = ?";
-				preparedStatement = this.con.prepareStatement(sql);
+		if (this.con != null) {
+			try {
+				preparedStatement = this.con.prepareStatement(this.SELECT_QUERY);
 				preparedStatement.setLong(1, id);
 				rs = preparedStatement.executeQuery();
-
 				rs.next();
 				p = new Pays(rs.getLong("ID_PAYS"), rs.getString("NOM"), rs.getString("LOGO"));
-
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-		} catch (SQLException e) {
-			e.printStackTrace();
+
 		}
 
 		return p;
@@ -66,7 +79,6 @@ public class PaysDAOImpl implements PaysDAO {
 
 	@Override
 	public void delete(Pays model) throws TechniqueException {
-		// TODO Auto-generated method stub
 	}
 
 }

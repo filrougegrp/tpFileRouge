@@ -21,9 +21,7 @@ public class SalarieTest extends APronosticTest {
 		Statement stm = connection.createStatement();
 		ResultSet rset = stm.executeQuery("SELECT * FROM PAYS");
 		assertThat(rset).isNotNull();
-		while (rset.next()) {
-			System.out.println(rset.getString(2));
-		}
+
 	}
 
 	@Test
