@@ -62,7 +62,9 @@ select s.NOM , s.PRENOM ,p1.NOM,p2.NOM, p.BUT_1, p.BUT_2, r.ID_RENCONTRE from SA
 --MOHAMED
 
 
-
+-- http://www.marcphilipp.de/blog/2012/03/19/using-dbunit-without-xml/
+-- http://dbunit.sourceforge.net/howto.html
+-- http://dbsetup.ninja-squad.com/user-guide.html
 
 
 
