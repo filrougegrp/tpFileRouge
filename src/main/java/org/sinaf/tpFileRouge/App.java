@@ -1,27 +1,16 @@
 package org.sinaf.tpFileRouge;
 
-import java.util.Random;
+import org.sinaf.tpFileRouge.dao.PaysDAO;
+import org.sinaf.tpFileRouge.dao.impl.PaysDAOImpl;
+import org.sinaf.tpFileRouge.exception.TechniqueException;
 
-/**
- * Hello world!
- *
- */
 public class App {
-	public static void main(String[] args) {
 
-		Random rn = new Random();
+	public static void main(String[] args) throws NumberFormatException, TechniqueException {
 
-		// for (int i = 1; i <= 24; i++) {
-		// System.out.println("INSERT INTO `PRONOSTIC` (`BUT_1`, `BUT_2`,
-		// `NOTE`, `ID_MATCH`, `ID_SALARIE`) VALUES ('"
-		// + rn.nextInt(6 - 0 + 1) + "', '" + rn.nextInt(6 - 0 + 1) + "', '0',
-		// '" + i + "', '1');");
-		// }
+		PaysDAO paysDAO = new PaysDAOImpl();
 
-		for (int i = 2; i <= 24; i++) {
-			System.out.println("UPDATE RENCONTRE SET BUT_1=" + rn.nextInt(6 - 0 + 1) + ",BUT_2=" + rn.nextInt(6 - 0 + 1)
-					+ " WHERE ID_RENCONTRE = " + i + ";");
-		}
+		System.out.println(paysDAO.getById(2L));
 
 		// TODO: 1- DbUnit + H2
 		// TODO: 1.1- TDD ****
@@ -30,4 +19,5 @@ public class App {
 		// TODO: 4- MVC
 
 	}
+
 }

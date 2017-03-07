@@ -1,12 +1,10 @@
 package org.sinaf.tpFileRouge;
 
-import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import org.junit.AfterClass;
-import org.junit.Before;
 import org.junit.BeforeClass;
 
 public abstract class APronosticTest {
@@ -23,12 +21,6 @@ public abstract class APronosticTest {
 		Class.forName("org.h2.Driver");
 		connection = DriverManager.getConnection(URL, "root", "");
 
-	}
-
-	@Before
-	public void setUp() throws FileNotFoundException, SQLException {
-		// File script = new File("V0__Create_Tables.sql");
-		// RunScript.execute(this.connection, new FileReader(script));
 	}
 
 	@AfterClass
