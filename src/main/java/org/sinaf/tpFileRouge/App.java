@@ -23,5 +23,11 @@ public class App {
 					+ " WHERE ID_RENCONTRE = " + i + ";");
 		}
 
+		// TODO: 1- DbUnit + H2
+		// TODO: 1.1- TDD ****
+		// TODO: 2- Singleton + booncp
+		// TODO: 3- DAO
+		// TODO: 4- MVC
+
 	}
 }
