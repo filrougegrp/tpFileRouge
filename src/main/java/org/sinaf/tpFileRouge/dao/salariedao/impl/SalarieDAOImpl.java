@@ -30,9 +30,9 @@ public class SalarieDAOImpl implements SalarieDao {
 	}
 
 	@Override
-	public Optional<Salarie> create(Salarie model) throws TechniqueException {
+	public int create(Salarie model) throws TechniqueException {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 	@Override

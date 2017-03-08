@@ -33,8 +33,8 @@ public class PaysDAOImpl implements PaysDAO {
 	}
 
 	@Override
-	public Optional<Pays> create(Pays model) throws TechniqueException {
-		return null;
+	public int create(Pays model) throws TechniqueException {
+		return 0;
 	}
 
 	@Override
@@ -42,7 +42,8 @@ public class PaysDAOImpl implements PaysDAO {
 		PreparedStatement preparedStatement;
 		if (this.con != null) {
 			try {
-				preparedStatement = this.con.prepareStatement(this.UPDATE_QUERY);
+				preparedStatement = this.con
+						.prepareStatement(this.UPDATE_QUERY);
 				preparedStatement.setString(1, model.getNom());
 				preparedStatement.setString(2, model.getLogo());
 				preparedStatement.setLong(3, model.getId());
@@ -62,11 +63,13 @@ public class PaysDAOImpl implements PaysDAO {
 		Pays p = null;
 		if (this.con != null) {
 			try {
-				preparedStatement = this.con.prepareStatement(this.SELECT_QUERY);
+				preparedStatement = this.con
+						.prepareStatement(this.SELECT_QUERY);
 				preparedStatement.setLong(1, id);
 				rs = preparedStatement.executeQuery();
 				rs.next();
-				p = new Pays(rs.getLong("ID_PAYS"), rs.getString("NOM"), rs.getString("LOGO"));
+				p = new Pays(rs.getLong("ID_PAYS"), rs.getString("NOM"),
+						rs.getString("LOGO"));
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
