@@ -15,7 +15,7 @@ import org.sinaf.tpFileRouge.model.Pays;
 
 public class PaysDAOImpl implements PaysDAO {
 
-	private final String SELECT_QUERY = "SELECT * FROM PAYS WHERE ID_PAYS = ?";
+	private final String SELECT_QUERY = "SELECT ID_PAYS,NOM FROM PAYS WHERE ID_PAYS = ?";
 	private final String UPDATE_QUERY = "UPDATE PAYS SET NOM = ?, LOGO = ? WHERE ID_PAYS= ?";
 
 	private Connection con;
@@ -66,7 +66,7 @@ public class PaysDAOImpl implements PaysDAO {
 				preparedStatement.setLong(1, id);
 				rs = preparedStatement.executeQuery();
 				rs.next();
-				p = new Pays(rs.getLong("ID_PAYS"), rs.getString("NOM"), rs.getString("LOGO"));
+				p = new Pays(rs.getLong("ID_PAYS"), rs.getString("NOM"), null);
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

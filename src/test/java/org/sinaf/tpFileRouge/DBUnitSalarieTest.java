@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import org.dbunit.DatabaseUnitException;
 import org.dbunit.operation.DatabaseOperation;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class DBUnitSalarieTest extends APronosticTest {
@@ -24,6 +25,7 @@ public class DBUnitSalarieTest extends APronosticTest {
 		}
 	}
 
+	@Ignore
 	@Test
 	public void updateTest() {
 		try {

@@ -1,15 +1,26 @@
 package org.sinaf.tpFileRouge.app;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
+import org.sinaf.tpFileRouge.exception.TechniqueException;
+import org.sinaf.tpFileRouge.model.Rencontre;
+import org.sinaf.tpFileRouge.model.Salarie;
+import org.sinaf.tpFileRouge.service.rencontre.RencontreService;
+import org.sinaf.tpFileRouge.service.rencontre.impl.RencontreServiceImpl;
+import org.sinaf.tpFileRouge.service.salarie.SalarieService;
+import org.sinaf.tpFileRouge.service.salarie.impl.SalarieServiceImpl;
+
 public class ConsoleApp {
 
-	private static String nom;
-	private static List<String> rencontres = Arrays.asList("match 1", "match 2");
+	private static SalarieService salarieService = new SalarieServiceImpl();
+	private static RencontreService rencontreService = new RencontreServiceImpl();
 
-	public static void main(String[] args) {
+	private static List<Rencontre> rencontres;
+
+	private static Salarie salarie;
+
+	public static void main(String[] args) throws TechniqueException {
 
 		getSalarie();
 
@@ -17,7 +28,7 @@ public class ConsoleApp {
 
 		while (selection != 0) {
 
-			System.out.println("votre nom est : " + nom);
+			System.out.println("votre nom est : " + salarie.getNom());
 			System.out.println("===== CAN 2016 =====\n\n");
 
 			System.out.println("====== MAIN MENU ======");
@@ -53,7 +64,7 @@ public class ConsoleApp {
 
 	}
 
-	public static void rencontreMenu() {
+	public static void rencontreMenu() throws TechniqueException {
 		Scanner s = new Scanner(System.in);
 
 		int selection = -1;
@@ -87,16 +98,23 @@ public class ConsoleApp {
 
 	}
 
-	private static void getSalarie() {
+	private static void getSalarie() throws TechniqueException {
 		Scanner s = new Scanner(System.in);
 		System.out.println("svp entrer votre nom");
-		nom = s.nextLine();
+
+		String nom = s.nextLine();
+
+		salarie = salarieService.getSalariebyUsername(nom).get();
+
 	}
 
-	private static void ListerRencontres() {
+	private static void ListerRencontres() throws TechniqueException {
 		System.out.println("Les rencontres prochin :");
 		int[] idx = { 1 };
-		rencontres.forEach(r -> System.out.println("[" + idx[0]++ + "]- " + r));
+
+		rencontres = rencontreService.getAll();
+		rencontres.forEach(r -> System.out
+				.println("[" + r.getId() + "]- " + r.getPays_1().getNom() + "  VS" + " " + r.getPays_2().getNom()));
 	}
 
 }
