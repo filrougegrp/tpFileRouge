@@ -6,7 +6,7 @@ import org.sinaf.tpFileRouge.exception.TechniqueException;
 
 public interface IDAO<T> {
 
-	Optional<T> create(T model) throws TechniqueException;
+	int create(T model) throws TechniqueException;
 
 	void update(T model) throws TechniqueException;
 

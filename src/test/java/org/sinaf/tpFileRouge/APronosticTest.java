@@ -13,10 +13,12 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.sinaf.tpFileRouge.dao.paysdao.PaysDAO;
-import org.sinaf.tpFileRouge.dao.paysdao.impl.PaysDAOImpl;
-import org.sinaf.tpFileRouge.dao.salariedao.SalarieDao;
-import org.sinaf.tpFileRouge.dao.salariedao.impl.SalarieDAOImpl;
+import org.sinaf.tpFileRouge.dao.pays.PaysDAO;
+import org.sinaf.tpFileRouge.dao.pays.impl.PaysDAOImpl;
+import org.sinaf.tpFileRouge.dao.salarie.SalarieDao;
+import org.sinaf.tpFileRouge.dao.salarie.impl.SalarieDAOImpl;
+import org.sinaf.tpFileRouge.service.pays.PaysService;
+import org.sinaf.tpFileRouge.service.pays.impl.PaysServiceImpl;
 
 public abstract class APronosticTest {
 
@@ -29,6 +31,7 @@ public abstract class APronosticTest {
 	protected static Connection connection;
 	protected PaysDAO paysDao;
 	protected SalarieDao salarieDao;
+	protected PaysService paysService;
 	protected static IDatabaseConnection dbUnitConnection;
 	protected static InputStream inputStreamXML;
 	protected static FlatXmlDataSetBuilder xmlDSBuilder;
@@ -55,6 +58,7 @@ public abstract class APronosticTest {
 	public void setUp() {
 		this.paysDao = new PaysDAOImpl(connection);
 		this.salarieDao = new SalarieDAOImpl(connection);
+		this.paysService = new PaysServiceImpl(connection);
 
 	}
 
