@@ -1,4 +1,4 @@
-package org.sinaf.tpFileRouge.dao.pronosticdao.impl;
+package org.sinaf.tpFileRouge.dao.pronostic.impl;
 
 import java.beans.PropertyVetoException;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 import org.sinaf.tpFileRouge.dao.ConnexionManager;
-import org.sinaf.tpFileRouge.dao.pronosticdao.PronosticDAO;
+import org.sinaf.tpFileRouge.dao.pronostic.PronosticDAO;
 import org.sinaf.tpFileRouge.exception.TechniqueException;
 import org.sinaf.tpFileRouge.model.Pronostic;
 
@@ -19,7 +19,7 @@ public class PronosticDAOImpl implements PronosticDAO {
 	private final String SELECT_QUERY = "SELECT * FROM PRONOSTIC WHERE ID_PRONOSTIC = ?";
 	private Connection con;
 
-	public PronosticDAOImpl() throws TechniqueException {
+	public PronosticDAOImpl() {
 		try {
 			this.con = ConnexionManager.getInstance().getConnection();
 		} catch (SQLException | IOException | PropertyVetoException e) {
@@ -37,12 +37,11 @@ public class PronosticDAOImpl implements PronosticDAO {
 		int rs = 0;
 		if (this.con != null) {
 			try {
-				preparedStatement = this.con
-						.prepareStatement(this.INSERT_QUERY);
+				preparedStatement = this.con.prepareStatement(this.INSERT_QUERY);
 				preparedStatement.setInt(1, model.getBut_1());
 				preparedStatement.setInt(2, model.getBut_2());
-				preparedStatement.setLong(3, model.getRencontre().getId());
-				preparedStatement.setLong(4, model.getSalarie().getId());
+				preparedStatement.setLong(3, model.getNote());
+				preparedStatement.setLong(4, model.getRencontre().getId());
 				preparedStatement.setLong(5, model.getSalarie().getId());
 				rs = preparedStatement.executeUpdate();
 
@@ -66,13 +65,11 @@ public class PronosticDAOImpl implements PronosticDAO {
 		Pronostic p = null;
 		if (this.con != null) {
 			try {
-				preparedStatement = this.con
-						.prepareStatement(this.SELECT_QUERY);
+				preparedStatement = this.con.prepareStatement(this.SELECT_QUERY);
 				preparedStatement.setLong(1, id);
 				rs = preparedStatement.executeQuery();
 				rs.next();
-				p = new Pronostic(rs.getLong("ID_PRONOSTIC"),
-						rs.getInt("BUT_1"), rs.getInt("BUT_2"), null, null);
+				p = new Pronostic(rs.getLong("ID_PRONOSTIC"), rs.getInt("BUT_1"), rs.getInt("BUT_2"), 0, null, null);
 
 			} catch (SQLException e) {
 				e.printStackTrace();

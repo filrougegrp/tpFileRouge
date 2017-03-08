@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Scanner;
 
 import org.sinaf.tpFileRouge.exception.TechniqueException;
+import org.sinaf.tpFileRouge.model.Pronostic;
 import org.sinaf.tpFileRouge.model.Rencontre;
 import org.sinaf.tpFileRouge.model.Salarie;
+import org.sinaf.tpFileRouge.service.pronostic.PronosticService;
+import org.sinaf.tpFileRouge.service.pronostic.impl.PronosticServiceImpl;
 import org.sinaf.tpFileRouge.service.rencontre.RencontreService;
 import org.sinaf.tpFileRouge.service.rencontre.impl.RencontreServiceImpl;
 import org.sinaf.tpFileRouge.service.salarie.SalarieService;
@@ -15,10 +18,13 @@ public class ConsoleApp {
 
 	private static SalarieService salarieService = new SalarieServiceImpl();
 	private static RencontreService rencontreService = new RencontreServiceImpl();
+	private static PronosticService pronosticService = new PronosticServiceImpl();
 
 	private static List<Rencontre> rencontres;
 
 	private static Salarie salarie;
+
+	private static Scanner s = new Scanner(System.in);
 
 	public static void main(String[] args) throws TechniqueException {
 
@@ -36,7 +42,7 @@ public class ConsoleApp {
 			System.out.println("[2] voir vos pronostic");
 			System.out.println("[0] exit\n\n");
 
-			Scanner s = new Scanner(System.in);
+			s.reset();
 
 			System.out.println("choisir menu --> ");
 			selection = s.nextInt();
@@ -45,16 +51,13 @@ public class ConsoleApp {
 			case 1:
 				rencontreMenu();
 				break;
-
 			case 2:
 				System.out.println("Vos pronostic");
 				break;
-
 			case 0:
 				System.out.println("Fin");
 				System.exit(0);
 				break;
-
 			default:
 				System.out.println("Please enter a valid selection.");
 
@@ -65,7 +68,7 @@ public class ConsoleApp {
 	}
 
 	public static void rencontreMenu() throws TechniqueException {
-		Scanner s = new Scanner(System.in);
+		s.reset();
 
 		int selection = -1;
 
@@ -76,30 +79,27 @@ public class ConsoleApp {
 			System.out.println("Choisir une rencontre pour saisir des pronostics :");
 
 			selection = s.nextInt();
+			System.out.println(selection);
 
-			switch (selection) {
-			case 1:
-				System.out.println("but_1 :");
-				int b1 = s.nextInt();
+			Rencontre rencontre = rencontreService.getRencontrebyId(selection).get();
+			Pronostic pronostic = new Pronostic();
+			pronostic.setSalarie(salarie);
+			pronostic.setRencontre(rencontre);
 
-				System.out.println("but_2 :");
-				int b2 = s.nextInt();
+			System.out.println("but_1 :");
+			pronostic.setBut_1(s.nextInt());
 
-				System.out.println("but_1 : " + b1 + "  but_2 : " + b2);
-				break;
-			case 2:
+			System.out.println("but_2 :");
+			pronostic.setBut_2(s.nextInt());
 
-				break;
-			case 0:
+			pronosticService.create(pronostic);
 
-				break;
-			}
 		}
 
 	}
 
 	private static void getSalarie() throws TechniqueException {
-		Scanner s = new Scanner(System.in);
+		s.reset();
 		System.out.println("svp entrer votre nom");
 
 		String nom = s.nextLine();

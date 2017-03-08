@@ -15,10 +15,10 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.sinaf.tpFileRouge.dao.pays.PaysDAO;
 import org.sinaf.tpFileRouge.dao.pays.impl.PaysDAOImpl;
-import org.sinaf.tpFileRouge.dao.pronosticdao.PronosticDAO;
-import org.sinaf.tpFileRouge.dao.pronosticdao.impl.PronosticDAOImpl;
+import org.sinaf.tpFileRouge.dao.pronostic.PronosticDAO;
+import org.sinaf.tpFileRouge.dao.pronostic.impl.PronosticDAOImpl;
 import org.sinaf.tpFileRouge.dao.salarie.SalarieDao;
-import org.sinaf.tpFileRouge.dao.salariedao.impl.SalarieDAOImpl;
+import org.sinaf.tpFileRouge.dao.salarie.impl.SalarieDAOImpl;
 import org.sinaf.tpFileRouge.service.pays.PaysService;
 import org.sinaf.tpFileRouge.service.pays.impl.PaysServiceImpl;
 
@@ -27,7 +27,7 @@ public abstract class APronosticTest {
 	// TODO : change PATH /home/mar1/workspace/tpFileRouge/src/test/resources
 	// C:/Users/ecole5/workspace/tpFileRouge/src/test/resources
 	// D:/workspaceEE/tpFileRouge/src/test/resources
-	private static final String PATH = "D:/workspaceEE/tpFileRouge/src/test/resources";
+	private static final String PATH = "E:/workspaceEE2017/tpFileRouge/src/test/resources";
 	private static final String URL = "jdbc:h2:mem:testTpFileRouge;INIT=runscript from '" + PATH
 			+ "/Create_Tables.sql'\\;runscript from '" + PATH + "/Insert_data.sql'";
 

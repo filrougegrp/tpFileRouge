@@ -1,4 +1,4 @@
-package org.sinaf.tpFileRouge.dao.pronosticdao;
+package org.sinaf.tpFileRouge.dao.pronostic;
 
 import org.sinaf.tpFileRouge.dao.IDAO;
 import org.sinaf.tpFileRouge.model.Pronostic;
