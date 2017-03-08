@@ -1,4 +1,4 @@
-package org.sinaf.tpFileRouge.dao.paysdao;
+package org.sinaf.tpFileRouge.dao.pays;
 
 import org.sinaf.tpFileRouge.dao.IDAO;
 import org.sinaf.tpFileRouge.model.Pays;

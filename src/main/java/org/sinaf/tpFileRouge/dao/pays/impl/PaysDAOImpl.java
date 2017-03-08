@@ -1,4 +1,4 @@
-package org.sinaf.tpFileRouge.dao.paysdao.impl;
+package org.sinaf.tpFileRouge.dao.pays.impl;
 
 import java.beans.PropertyVetoException;
 import java.io.IOException;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 import org.sinaf.tpFileRouge.dao.ConnexionManager;
-import org.sinaf.tpFileRouge.dao.paysdao.PaysDAO;
+import org.sinaf.tpFileRouge.dao.pays.PaysDAO;
 import org.sinaf.tpFileRouge.exception.TechniqueException;
 import org.sinaf.tpFileRouge.model.Pays;
 
@@ -33,8 +33,8 @@ public class PaysDAOImpl implements PaysDAO {
 	}
 
 	@Override
-	public Optional<Pays> create(Pays model) throws TechniqueException {
-		return null;
+	public int create(Pays model) throws TechniqueException {
+		return 0;
 	}
 
 	@Override
@@ -70,7 +70,7 @@ public class PaysDAOImpl implements PaysDAO {
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new TechniqueException("getByID Not working SQLException", e);
 			}
 
 		}
