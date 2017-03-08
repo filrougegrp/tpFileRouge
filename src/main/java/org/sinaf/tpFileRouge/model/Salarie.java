@@ -20,4 +20,8 @@ public class Salarie {
 	private String password;
 	private Role role;
 	private List<Pronostic> pronostics;
+
+	public Salarie(long l) {
+		id = l;
+	}
 }

@@ -33,7 +33,7 @@ public class InsertPronostic extends APronosticTest {
 			Salarie salarie = new Salarie(1, "badouch", "mohamed", "badouch",
 					"password", role, null);
 
-			int rs = this.pronosticDao.create(new Pronostic(1, 2, 1, rencontre,
+			int rs = this.pronosticDao.create(new Pronostic(1, 2, 1, 0, rencontre,
 					salarie));
 			assertThat(rs).isEqualTo(1);
 		} catch (TechniqueException e) {
