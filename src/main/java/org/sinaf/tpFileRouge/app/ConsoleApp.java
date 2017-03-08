@@ -21,6 +21,7 @@ public class ConsoleApp {
 	private static PronosticService pronosticService = new PronosticServiceImpl();
 
 	private static List<Rencontre> rencontres;
+	private static List<Pronostic> pronostics;
 
 	private static Salarie salarie;
 
@@ -52,7 +53,7 @@ public class ConsoleApp {
 				rencontreMenu();
 				break;
 			case 2:
-				System.out.println("Vos pronostic");
+				ListerPronostics();
 				break;
 			case 0:
 				System.out.println("Fin");
@@ -76,23 +77,28 @@ public class ConsoleApp {
 
 			ListerRencontres();
 
-			System.out.println("Choisir une rencontre pour saisir des pronostics :");
+			System.out.println("Choisir une rencontre pour saisir des pronostics (0 pour retourner au main menu):");
 
 			selection = s.nextInt();
-			System.out.println(selection);
 
-			Rencontre rencontre = rencontreService.getRencontrebyId(selection).get();
-			Pronostic pronostic = new Pronostic();
-			pronostic.setSalarie(salarie);
-			pronostic.setRencontre(rencontre);
+			if (selection != 0) {
 
-			System.out.println("but_1 :");
-			pronostic.setBut_1(s.nextInt());
+				Rencontre rencontre = rencontreService.getRencontrebyId(selection).get();
+				System.out.println("Pronostic du match : " + rencontre.getPays_1().getNom() + "  VS" + " "
+						+ rencontre.getPays_2().getNom());
+				Pronostic pronostic = new Pronostic();
+				pronostic.setSalarie(salarie);
+				pronostic.setRencontre(rencontre);
 
-			System.out.println("but_2 :");
-			pronostic.setBut_2(s.nextInt());
+				System.out.println(rencontre.getPays_1().getNom() + " buts => ");
+				pronostic.setBut_1(s.nextInt());
 
-			pronosticService.create(pronostic);
+				System.out.println(rencontre.getPays_2().getNom() + " buts => ");
+				pronostic.setBut_2(s.nextInt());
+
+				pronosticService.create(pronostic);
+
+			}
 
 		}
 
@@ -110,11 +116,23 @@ public class ConsoleApp {
 
 	private static void ListerRencontres() throws TechniqueException {
 		System.out.println("Les rencontres prochin :");
-		int[] idx = { 1 };
 
 		rencontres = rencontreService.getAll();
 		rencontres.forEach(r -> System.out
 				.println("[" + r.getId() + "]- " + r.getPays_1().getNom() + "  VS" + " " + r.getPays_2().getNom()));
+	}
+
+	private static void ListerPronostics() throws TechniqueException {
+		System.out.println("Vos pronostics :");
+
+		pronostics = pronosticService.getAllBySalarieId(salarie.getId());
+		pronostics.forEach(p -> System.out.println("[" + p.getId() + "] - " + p.getRencontre().getPays_1().getNom()
+				+ "  " + p.getBut_1() + " - " + p.getBut_2() + "  " + p.getRencontre().getPays_2().getNom()));
+
+		System.out.println("tapez 0 pour retourner au main menu : ");
+		s.reset();
+		int selection = s.nextInt();
+
 	}
 
 }
