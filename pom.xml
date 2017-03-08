@@ -23,6 +23,12 @@
 
 	<dependencies>
 
+
+<dependency>
+    <groupId>org.slf4j</groupId>
+    <artifactId>slf4j-api</artifactId>
+    <version>1.7.24</version>
+</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -66,6 +72,12 @@
 			<version>2.6.0</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+		    <groupId>org.dbunit</groupId>
+		    <artifactId>dbunit</artifactId>
+		    <version>2.5.3</version>
+		</dependency>
+		
 	</dependencies>
 	<!-- End Test dependencies -->
 
@@ -79,7 +91,7 @@
 					<driver>${database.driver}</driver>
 					<url>${database.url}</url>
 					<user>root</user>
-					<password>Marsql1$@</password>
+					<password>root</password>
 					<schemas>
 						<schema>${database.name}</schema>
 					</schemas>
@@ -88,7 +100,7 @@
 							<!-- for Linux filesystem:\src\main\resources\db -->
 							<!-- for windows filesystem:/src/main/resources/db -->
 
-							filesystem:\src\main\resources\db
+							filesystem:/src/main/resources/db
 
 						</location>
 					</locations>

@@ -13,7 +13,8 @@ public class ConnexionManager {
 	private static ConnexionManager connexionManager;
 	private BoneCP connectionPool;
 
-	private ConnexionManager() throws IOException, SQLException, PropertyVetoException {
+	private ConnexionManager() throws IOException, SQLException,
+			PropertyVetoException {
 		try {
 			// load the database driver (make sure this is in your classpath!)
 			Class.forName("com.mysql.jdbc.Driver");
@@ -29,7 +30,7 @@ public class ConnexionManager {
 			// jdbc:mysql://127.0.0.1/yourdb
 			config.setJdbcUrl("jdbc:mysql://localhost/pronosticDB");
 			config.setUsername("root");
-			config.setPassword("Marsql1$@");
+			config.setPassword("root");
 			config.setMinConnectionsPerPartition(5);
 			config.setMaxConnectionsPerPartition(10);
 			config.setPartitionCount(1);
@@ -42,7 +43,8 @@ public class ConnexionManager {
 
 	}
 
-	public static ConnexionManager getInstance() throws IOException, SQLException, PropertyVetoException {
+	public static ConnexionManager getInstance() throws IOException,
+			SQLException, PropertyVetoException {
 		if (connexionManager == null) {
 			connexionManager = new ConnexionManager();
 			return connexionManager;
