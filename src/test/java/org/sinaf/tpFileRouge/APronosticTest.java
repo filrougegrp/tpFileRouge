@@ -13,18 +13,22 @@ import org.dbunit.dataset.xml.FlatXmlDataSetBuilder;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.sinaf.tpFileRouge.dao.PaysDAO;
-import org.sinaf.tpFileRouge.dao.impl.PaysDAOImpl;
+import org.sinaf.tpFileRouge.dao.paysdao.PaysDAO;
+import org.sinaf.tpFileRouge.dao.paysdao.impl.PaysDAOImpl;
+import org.sinaf.tpFileRouge.dao.salariedao.SalarieDao;
+import org.sinaf.tpFileRouge.dao.salariedao.impl.SalarieDAOImpl;
 
 public abstract class APronosticTest {
 
-	// TODO : change PATH
-	private static final String PATH = "C:/Users/ecole5/workspace/tpFileRouge/src/test/resources";
+	// TODO : change PATH /home/mar1/workspace/tpFileRouge/src/test/resources
+	// C:/Users/ecole5/workspace/tpFileRouge/src/test/resources
+	private static final String PATH = "/home/mar1/workspace/tpFileRouge/src/test/resources";
 	private static final String URL = "jdbc:h2:mem:testTpFileRouge;INIT=runscript from '" + PATH
 			+ "/Create_Tables.sql'\\;runscript from '" + PATH + "/Insert_data.sql'";
 
 	protected static Connection connection;
 	protected PaysDAO paysDao;
+	protected SalarieDao salarieDao;
 	protected static IDatabaseConnection dbUnitConnection;
 	protected static InputStream inputStreamXML;
 	protected static FlatXmlDataSetBuilder xmlDSBuilder;
@@ -50,6 +54,8 @@ public abstract class APronosticTest {
 	@Before
 	public void setUp() {
 		this.paysDao = new PaysDAOImpl(connection);
+		this.salarieDao = new SalarieDAOImpl(connection);
+
 	}
 
 	@AfterClass
