@@ -1,4 +1,4 @@
-package org.sinaf.tpFileRouge.dao.salariedao.impl;
+package org.sinaf.tpFileRouge.dao.salarie.impl;
 
 import java.beans.PropertyVetoException;
 import java.io.IOException;
@@ -52,18 +52,14 @@ public class SalarieDAOImpl implements SalarieDao {
 
 		if (this.con != null) {
 			try {
-				preparedStatement = this.con
-						.prepareStatement(this.GET_BY_ID_QUERY);
+				preparedStatement = this.con.prepareStatement(this.GET_BY_ID_QUERY);
 				preparedStatement.setLong(1, id);
 				rs = preparedStatement.executeQuery();
 				rs.next();
-				salarie = new Salarie(rs.getLong("ID_SALARIE"),
-						rs.getString("NOM"), rs.getString("PRENOM"),
-						rs.getString("USERNAME"), rs.getString("PASSWORD"),
-						null, null);
+				salarie = new Salarie(rs.getLong("ID_SALARIE"), rs.getString("NOM"), rs.getString("PRENOM"),
+						rs.getString("USERNAME"), rs.getString("PASSWORD"), null, null);
 			} catch (SQLException e) {
-				throw new TechniqueException("Salarie not found SQLException ",
-						e);
+				throw new TechniqueException("Salarie not found SQLException ", e);
 			}
 
 		}
@@ -78,26 +74,21 @@ public class SalarieDAOImpl implements SalarieDao {
 	}
 
 	@Override
-	public Optional<Salarie> getSalarieByUsername(String username)
-			throws TechniqueException {
+	public Optional<Salarie> getSalarieByUsername(String username) throws TechniqueException {
 		PreparedStatement preparedStatement;
 		ResultSet rs;
 		Salarie salarie = null;
 
 		if (this.con != null) {
 			try {
-				preparedStatement = this.con
-						.prepareStatement(this.GET_BY_USERNAME_QUERY);
+				preparedStatement = this.con.prepareStatement(this.GET_BY_USERNAME_QUERY);
 				preparedStatement.setString(1, username);
 				rs = preparedStatement.executeQuery();
 				rs.next();
-				salarie = new Salarie(rs.getLong("ID_SALARIE"),
-						rs.getString("NOM"), rs.getString("PRENOM"),
-						rs.getString("USERNAME"), rs.getString("PASSWORD"),
-						null, null);
+				salarie = new Salarie(rs.getLong("ID_SALARIE"), rs.getString("NOM"), rs.getString("PRENOM"),
+						rs.getString("USERNAME"), rs.getString("PASSWORD"), null, null);
 			} catch (SQLException e) {
-				throw new TechniqueException("Salarie not found SQLException ",
-						e);
+				throw new TechniqueException("Salarie not found SQLException ", e);
 			}
 
 		}
