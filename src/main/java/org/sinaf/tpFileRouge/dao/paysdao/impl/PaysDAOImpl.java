@@ -1,4 +1,4 @@
-package org.sinaf.tpFileRouge.dao.impl;
+package org.sinaf.tpFileRouge.dao.paysdao.impl;
 
 import java.beans.PropertyVetoException;
 import java.io.IOException;
@@ -6,9 +6,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 
 import org.sinaf.tpFileRouge.dao.ConnexionManager;
-import org.sinaf.tpFileRouge.dao.PaysDAO;
+import org.sinaf.tpFileRouge.dao.paysdao.PaysDAO;
 import org.sinaf.tpFileRouge.exception.TechniqueException;
 import org.sinaf.tpFileRouge.model.Pays;
 
@@ -32,7 +33,7 @@ public class PaysDAOImpl implements PaysDAO {
 	}
 
 	@Override
-	public Pays create(Pays model) throws TechniqueException {
+	public Optional<Pays> create(Pays model) throws TechniqueException {
 		return null;
 	}
 
@@ -54,12 +55,11 @@ public class PaysDAOImpl implements PaysDAO {
 	}
 
 	@Override
-	public Pays getById(Long id) throws TechniqueException {
+	public Optional<Pays> getById(Long id) throws TechniqueException {
 
 		PreparedStatement preparedStatement;
 		ResultSet rs;
 		Pays p = null;
-
 		if (this.con != null) {
 			try {
 				preparedStatement = this.con.prepareStatement(this.SELECT_QUERY);
@@ -67,14 +67,14 @@ public class PaysDAOImpl implements PaysDAO {
 				rs = preparedStatement.executeQuery();
 				rs.next();
 				p = new Pays(rs.getLong("ID_PAYS"), rs.getString("NOM"), rs.getString("LOGO"));
+
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
 		}
-
-		return p;
+		return Optional.ofNullable(p);
 	}
 
 	@Override

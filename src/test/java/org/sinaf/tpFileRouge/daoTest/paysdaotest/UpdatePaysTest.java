@@ -1,4 +1,4 @@
-package org.sinaf.tpFileRouge.daoTest;
+package org.sinaf.tpFileRouge.daoTest.paysdaotest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,7 +14,7 @@ public class UpdatePaysTest extends APronosticTest {
 		Pays pays = new Pays(3L, "Congo", "CLogo");
 		try {
 			this.paysDao.update(pays);
-			assertThat(this.paysDao.getById(3L).getNom()).isEqualTo("Congo");
+			assertThat(this.paysDao.getById(3L).get().getNom()).isEqualTo("Congo");
 		} catch (TechniqueException e) {
 			e.printStackTrace();
 		}
