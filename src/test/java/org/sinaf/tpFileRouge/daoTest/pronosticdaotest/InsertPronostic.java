@@ -22,19 +22,15 @@ public class InsertPronostic extends APronosticTest {
 
 		try {
 
-			Competition competition = new Competition(1, "CAN ",
-					LocalDate.now());
+			Competition competition = new Competition(1, "CAN ", LocalDate.now());
 			Poule poule = new Poule(1, "A", true, competition);
 			Pays pays1 = new Pays(1L, "maroc", "hhhh");
 			Pays pays2 = new Pays(2L, "togo", "mmmm");
-			Rencontre rencontre = new Rencontre(1L, pays1, pays2, 1, 2, poule,
-					LocalDateTime.now());
+			Rencontre rencontre = new Rencontre(1L, pays1, pays2, 1, 2, poule, LocalDateTime.now());
 			Role role = new Role(1, "ROLE_USER");
-			Salarie salarie = new Salarie(1, "badouch", "mohamed", "badouch",
-					"password", role, null);
+			Salarie salarie = new Salarie(1, "badouch", "mohamed", "badouch", "password", role, null);
 
-			int rs = this.pronosticDao.create(new Pronostic(1, 2, 1, 0, rencontre,
-					salarie));
+			int rs = this.pronosticDao.create(new Pronostic(1, 2, 1, 0, rencontre, salarie));
 			assertThat(rs).isEqualTo(1);
 		} catch (TechniqueException e) {
 			e.printStackTrace();

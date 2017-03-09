@@ -11,10 +11,19 @@ import org.sinaf.tpFileRouge.service.pronostic.PronosticService;
 
 public class PronosticServiceImpl implements PronosticService {
 
-	private final PronosticDAO pronosticDao;
+	private PronosticDAO pronosticDao;
+
+	public PronosticServiceImpl(PronosticDAO pronosticDAO) {
+		this.pronosticDao = pronosticDAO;
+	}
 
 	public PronosticServiceImpl() {
-		this.pronosticDao = new PronosticDAOImpl();
+		try {
+			this.pronosticDao = new PronosticDAOImpl();
+		} catch (TechniqueException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public PronosticServiceImpl(Connection connection) {
@@ -28,7 +37,7 @@ public class PronosticServiceImpl implements PronosticService {
 
 	@Override
 	public List<Pronostic> getAllBySalarieId(Long id) throws TechniqueException {
-		return pronosticDao.getAllBySalarieId(id);
+		return this.pronosticDao.getAllBySalarieId(id);
 	}
 
 }

@@ -21,6 +21,10 @@ public class RencontreServiceImpl implements RencontreService {
 		}
 	}
 
+	public RencontreServiceImpl(RencontreDAO rencontreDao) {
+		this.rencontreDao = rencontreDao;
+	}
+
 	@Override
 	public List<Rencontre> getAll() throws TechniqueException {
 		return this.rencontreDao.getAll();

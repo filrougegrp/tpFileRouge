@@ -6,7 +6,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,7 +18,6 @@ import org.sinaf.tpFileRouge.dao.salarie.SalarieDao;
 import org.sinaf.tpFileRouge.dao.salarie.impl.SalarieDAOImpl;
 import org.sinaf.tpFileRouge.exception.TechniqueException;
 import org.sinaf.tpFileRouge.model.Pronostic;
-import org.sinaf.tpFileRouge.model.Rencontre;
 
 public class PronosticDAOImpl implements PronosticDAO {
 
@@ -32,16 +30,13 @@ public class PronosticDAOImpl implements PronosticDAO {
 
 	private Connection con;
 
-	public PronosticDAOImpl() {
+	public PronosticDAOImpl() throws TechniqueException {
 		try {
-			rencontreDAO = new RencontreDAOImpl();
-			salarieDao = new SalarieDAOImpl();
+			this.rencontreDAO = new RencontreDAOImpl();
+			this.salarieDao = new SalarieDAOImpl();
 
 			this.con = ConnexionManager.getInstance().getConnection();
 		} catch (SQLException | IOException | PropertyVetoException e) {
-			e.printStackTrace();
-		} catch (TechniqueException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -119,8 +114,8 @@ public class PronosticDAOImpl implements PronosticDAO {
 
 				while (rs.next()) {
 					pronostics.add(new Pronostic(rs.getLong("ID_PRONOSTIC"), rs.getInt("BUT_1"), rs.getInt("BUT_2"),
-							rs.getInt("NOTE"), rencontreDAO.getById(rs.getLong("ID_RENCONTRE")).get(),
-							salarieDao.getById(rs.getLong("ID_SALARIE")).get()));
+							rs.getInt("NOTE"), this.rencontreDAO.getById(rs.getLong("ID_RENCONTRE")).get(),
+							this.salarieDao.getById(rs.getLong("ID_SALARIE")).get()));
 
 				}
 

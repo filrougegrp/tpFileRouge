@@ -13,18 +13,22 @@ import org.sinaf.tpFileRouge.APronosticServiceTest;
 import org.sinaf.tpFileRouge.exception.TechniqueException;
 import org.sinaf.tpFileRouge.model.Salarie;
 
-public class GetSalarieByIdTest extends APronosticServiceTest {
+public class GetSalarieByUsernameTest extends APronosticServiceTest {
 
 	@Test
-	public void shoudReturnSalarieWhenGetPaysById() throws TechniqueException {
+	public void shoudReturnSalarieWhenGetPaysByUsername() throws TechniqueException {
 
-		doReturn(Optional.ofNullable(new Salarie(3L))).when(this.mockSalarieDao).getById(3L);
+		Salarie s = new Salarie();
+		s.setUsername("saoud");
 
-		Salarie salarie = this.salarieService.getSalariebyId(3L).get();
+		doReturn(Optional.ofNullable(s)).when(this.mockSalarieDao).getSalarieByUsername("saoud");
+
+		Salarie salarie = this.salarieService.getSalariebyUsername("saoud").get();
 
 		assertNotNull(salarie);
-		assertEquals(3L, salarie.getId());
-		verify(this.mockSalarieDao, times(1)).getById(3L);
+		assertEquals("saoud", salarie.getUsername());
+		verify(this.mockSalarieDao, times(1)).getSalarieByUsername("saoud");
+
 	}
 
 }

@@ -27,9 +27,9 @@ public class ConnexionManager {
 			BoneCPConfig config = new BoneCPConfig();
 			// jdbc url specific to your database, eg
 			// jdbc:mysql://127.0.0.1/yourdb
-			config.setJdbcUrl("jdbc:mysql://localhost/pronosticDB");
+			config.setJdbcUrl("jdbc:mysql://localhost:3305/pronosticDB");
 			config.setUsername("root");
-			config.setPassword("");
+			config.setPassword("root");
 			config.setMinConnectionsPerPartition(5);
 			config.setMaxConnectionsPerPartition(10);
 			config.setPartitionCount(1);

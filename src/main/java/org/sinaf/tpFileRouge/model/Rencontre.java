@@ -21,4 +21,8 @@ public class Rencontre {
 	private Poule poule;
 	private LocalDateTime dateRencontre;
 
+	public Rencontre(long id) {
+		this.id = id;
+	}
+
 }

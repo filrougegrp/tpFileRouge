@@ -17,6 +17,8 @@ import org.sinaf.tpFileRouge.dao.pays.PaysDAO;
 import org.sinaf.tpFileRouge.dao.pays.impl.PaysDAOImpl;
 import org.sinaf.tpFileRouge.dao.pronostic.PronosticDAO;
 import org.sinaf.tpFileRouge.dao.pronostic.impl.PronosticDAOImpl;
+import org.sinaf.tpFileRouge.dao.rencontre.RencontreDAO;
+import org.sinaf.tpFileRouge.dao.rencontre.impl.RencontreDAOImpl;
 import org.sinaf.tpFileRouge.dao.salarie.SalarieDao;
 import org.sinaf.tpFileRouge.dao.salarie.impl.SalarieDAOImpl;
 import org.sinaf.tpFileRouge.service.pays.PaysService;
@@ -27,13 +29,14 @@ public abstract class APronosticTest {
 	// TODO : change PATH /home/mar1/workspace/tpFileRouge/src/test/resources
 	// C:/Users/ecole5/workspace/tpFileRouge/src/test/resources
 	// D:/workspaceEE/tpFileRouge/src/test/resources
-	private static final String PATH = "E:/workspaceEE2017/tpFileRouge/src/test/resources";
+	private static final String PATH = "D:/workspaceEE/tpFileRouge/src/test/resources";
 	private static final String URL = "jdbc:h2:mem:testTpFileRouge;INIT=runscript from '" + PATH
 			+ "/Create_Tables.sql'\\;runscript from '" + PATH + "/Insert_data.sql'";
 
 	protected static Connection connection;
 	protected PaysDAO paysDao;
 	protected SalarieDao salarieDao;
+	protected RencontreDAO rencontreDAO;
 
 	protected PronosticDAO pronosticDao;
 
@@ -65,6 +68,7 @@ public abstract class APronosticTest {
 		this.paysDao = new PaysDAOImpl(connection);
 		this.salarieDao = new SalarieDAOImpl(connection);
 		this.pronosticDao = new PronosticDAOImpl(connection);
+		this.rencontreDAO = new RencontreDAOImpl(connection);
 		this.paysService = new PaysServiceImpl(connection);
 
 	}
