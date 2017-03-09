@@ -38,6 +38,12 @@ public class RencontreDAOImpl implements RencontreDAO {
 	}
 
 	public RencontreDAOImpl(Connection connection) {
+		try {
+			this.paysDAO = new PaysDAOImpl();
+		} catch (TechniqueException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.con = connection;
 	}
 
@@ -93,10 +99,10 @@ public class RencontreDAOImpl implements RencontreDAO {
 				rs = preparedStatement.executeQuery();
 
 				while (rs.next()) {
+
 					rencontres.add(new Rencontre(rs.getLong(1), this.paysDAO.getById(rs.getLong(5)).get(),
 							this.paysDAO.getById(rs.getLong(6)).get(), rs.getInt(3), rs.getInt(4), null,
 							LocalDateTime.now()));
-
 				}
 
 			} catch (SQLException e) {

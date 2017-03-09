@@ -2,8 +2,6 @@ package org.sinaf.tpFileRouge.daoTest.rencontredaotest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.Optional;
-
 import org.junit.Test;
 import org.sinaf.tpFileRouge.APronosticTest;
 import org.sinaf.tpFileRouge.exception.TechniqueException;
@@ -13,8 +11,8 @@ public class GetRencontreByIdTest extends APronosticTest {
 
 	@Test
 	public void shoudlReturnRencontreWhenGetById() throws TechniqueException {
-		Optional<Rencontre> rencontre = this.rencontreDAO.getById(2L);
-		assertThat(rencontre.isPresent()).isTrue();
+		Rencontre rencontre = this.rencontreDAO.getById(8L).get();
+		assertThat(rencontre).isNotNull();
 	}
 
 	@Test(expected = TechniqueException.class)

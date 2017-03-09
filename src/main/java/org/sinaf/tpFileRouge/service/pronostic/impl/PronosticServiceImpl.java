@@ -37,7 +37,7 @@ public class PronosticServiceImpl implements PronosticService {
 
 	@Override
 	public List<Pronostic> getAllBySalarieId(Long id) throws TechniqueException {
-		return this.pronosticDao.getAllBySalarieId(id);
+		return this.pronosticDao.getAllPronosticsBySalarieId(id);
 	}
 
 }

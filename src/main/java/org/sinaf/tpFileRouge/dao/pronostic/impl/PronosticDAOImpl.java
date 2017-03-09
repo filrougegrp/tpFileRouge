@@ -42,6 +42,14 @@ public class PronosticDAOImpl implements PronosticDAO {
 	}
 
 	public PronosticDAOImpl(Connection connection) {
+		try {
+			this.rencontreDAO = new RencontreDAOImpl();
+			this.salarieDao = new SalarieDAOImpl();
+		} catch (TechniqueException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 		this.con = connection;
 	}
 
@@ -73,24 +81,8 @@ public class PronosticDAOImpl implements PronosticDAO {
 	}
 
 	@Override
-	public Optional<Pronostic> getById(Long id) throws TechniqueException {
-		PreparedStatement preparedStatement;
-		ResultSet rs;
-		Pronostic p = null;
-		if (this.con != null) {
-			try {
-				preparedStatement = this.con.prepareStatement(this.SELECT_QUERY);
-				preparedStatement.setLong(1, id);
-				rs = preparedStatement.executeQuery();
-				rs.next();
-				p = new Pronostic(rs.getLong("ID_PRONOSTIC"), rs.getInt("BUT_1"), rs.getInt("BUT_2"), 0, null, null);
-
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-
-		}
-		return Optional.ofNullable(p);
+	public Optional<Pronostic> getById(Long id) {
+		return null;
 	}
 
 	@Override
@@ -99,7 +91,7 @@ public class PronosticDAOImpl implements PronosticDAO {
 	}
 
 	@Override
-	public List<Pronostic> getAllBySalarieId(Long id) throws TechniqueException {
+	public List<Pronostic> getAllPronosticsBySalarieId(Long id) throws TechniqueException {
 
 		PreparedStatement preparedStatement;
 		ResultSet rs;

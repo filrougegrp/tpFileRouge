@@ -8,6 +8,6 @@ import org.sinaf.tpFileRouge.model.Pronostic;
 
 public interface PronosticDAO extends IDAO<Pronostic> {
 
-	List<Pronostic> getAllBySalarieId(Long id) throws TechniqueException;
+	List<Pronostic> getAllPronosticsBySalarieId(Long id) throws TechniqueException;
 
 }

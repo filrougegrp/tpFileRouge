@@ -5,22 +5,25 @@ import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
 import org.sinaf.tpFileRouge.APronosticServiceTest;
 import org.sinaf.tpFileRouge.exception.TechniqueException;
 import org.sinaf.tpFileRouge.model.Pronostic;
 
-public class InsertPronosticTest extends APronosticServiceTest {
+public class GetAllPronosticsBySalarieTest extends APronosticServiceTest {
+
 	@Test
 	public void shoulReturn1WhenInsertSucces() {
 
 		try {
-			Pronostic p = new Pronostic();
-			doReturn(1).when(this.mockPronosticDAO).create(p);
+			List<Pronostic> pronostics = Arrays.asList(new Pronostic(), new Pronostic(), new Pronostic());
+			doReturn(pronostics).when(this.mockPronosticDAO).getAllPronosticsBySalarieId(1L);
 
-			int rs = this.pronosticService.create(p);
-			assertThat(rs).isEqualTo(1);
-			verify(this.mockPronosticDAO, times(1)).create(p);
+			assertThat(this.pronosticService.getAllBySalarieId(1L).size()).isEqualTo(pronostics.size());
+			verify(this.mockPronosticDAO, times(1)).getAllPronosticsBySalarieId(1L);
 		} catch (TechniqueException e) {
 			e.printStackTrace();
 		}

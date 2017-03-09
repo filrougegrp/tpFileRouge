@@ -39,19 +39,6 @@ public class PaysDAOImpl implements PaysDAO {
 
 	@Override
 	public void update(Pays model) throws TechniqueException {
-		PreparedStatement preparedStatement;
-		if (this.con != null) {
-			try {
-				preparedStatement = this.con.prepareStatement(this.UPDATE_QUERY);
-				preparedStatement.setString(1, model.getNom());
-				preparedStatement.setString(2, model.getLogo());
-				preparedStatement.setLong(3, model.getId());
-				preparedStatement.executeUpdate();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 	}
 
 	@Override

@@ -22,14 +22,13 @@ import org.sinaf.tpFileRouge.dao.rencontre.impl.RencontreDAOImpl;
 import org.sinaf.tpFileRouge.dao.salarie.SalarieDao;
 import org.sinaf.tpFileRouge.dao.salarie.impl.SalarieDAOImpl;
 import org.sinaf.tpFileRouge.service.pays.PaysService;
-import org.sinaf.tpFileRouge.service.pays.impl.PaysServiceImpl;
 
 public abstract class APronosticTest {
 
 	// TODO : change PATH /home/mar1/workspace/tpFileRouge/src/test/resources
 	// C:/Users/ecole5/workspace/tpFileRouge/src/test/resources
 	// D:/workspaceEE/tpFileRouge/src/test/resources
-	private static final String PATH = "D:/workspaceEE/tpFileRouge/src/test/resources";
+	private static final String PATH = "/home/mar1/workspace/tpFileRouge/src/test/resources";
 	private static final String URL = "jdbc:h2:mem:testTpFileRouge;INIT=runscript from '" + PATH
 			+ "/Create_Tables.sql'\\;runscript from '" + PATH + "/Insert_data.sql'";
 
@@ -69,7 +68,6 @@ public abstract class APronosticTest {
 		this.salarieDao = new SalarieDAOImpl(connection);
 		this.pronosticDao = new PronosticDAOImpl(connection);
 		this.rencontreDAO = new RencontreDAOImpl(connection);
-		this.paysService = new PaysServiceImpl(connection);
 
 	}
 

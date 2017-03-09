@@ -1,6 +1,5 @@
 package org.sinaf.tpFileRouge.service.pays.impl;
 
-import java.sql.Connection;
 import java.util.Optional;
 
 import org.sinaf.tpFileRouge.dao.pays.PaysDAO;
@@ -17,8 +16,8 @@ public class PaysServiceImpl implements PaysService {
 		this.paysDao = new PaysDAOImpl();
 	}
 
-	public PaysServiceImpl(Connection connection) {
-		this.paysDao = new PaysDAOImpl(connection);
+	public PaysServiceImpl(PaysDAO paysDAO) {
+		this.paysDao = paysDAO;
 	}
 
 	@Override
@@ -28,7 +27,6 @@ public class PaysServiceImpl implements PaysService {
 
 	@Override
 	public void updatePays(Pays pays) throws TechniqueException {
-		this.paysDao.update(pays);
 	}
 
 }
