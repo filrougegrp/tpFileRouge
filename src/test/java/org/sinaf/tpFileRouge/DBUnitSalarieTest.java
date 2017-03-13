@@ -10,12 +10,12 @@ import org.junit.Test;
 
 public class DBUnitSalarieTest extends APronosticTest {
 	DBUnitSalarieTest dbUnitTest;
-
+	@Ignore
 	@Before
 	public void setup() {
 		this.dbUnitTest = new DBUnitSalarieTest();
 	}
-
+	@Ignore
 	@Test
 	public void insertTest() {
 		try {
@@ -34,7 +34,7 @@ public class DBUnitSalarieTest extends APronosticTest {
 			e.printStackTrace();
 		}
 	}
-
+	@Ignore
 	@Test
 	public void deleteTest() {
 		try {

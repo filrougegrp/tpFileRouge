@@ -17,7 +17,9 @@
 		<!-- <database.url>jdbc:mysql://192.168.56.10</database.url> -->
 		<!-- <database.url>jdbc:mysql://localhost:3305</database.url> -->
 		<database.url>jdbc:mysql://localhost</database.url>
-
+		<flyway.location>filesystem:\src\main\resources\db</flyway.location>
+		<database.username>root</database.username>
+		<database.password>Marsql1$@</database.password>
 		<lombok.version>1.16.2</lombok.version>
 	</properties>
 
@@ -92,8 +94,8 @@
 				<configuration>
 					<driver>${database.driver}</driver>
 					<url>${database.url}</url>
-					<user>root</user>
-					<password>Marsql1$@</password>
+					<user>${database.username}</user>
+					<password>${database.password}</password>
 					<schemas>
 						<schema>${database.name}</schema>
 					</schemas>
@@ -101,8 +103,8 @@
 						<location>
 							<!-- for Linux filesystem:\src\main\resources\db -->
 							<!-- for windows filesystem:/src/main/resources/db -->
-
-							filesystem:\src\main\resources\db
+							
+							${flyway.location}
 
 						</location>
 					</locations>
